@@ -44,7 +44,7 @@ let node8 = new ListNode(3, node9);
 let node7 = new ListNode(2, node8);
 let head2 = new ListNode(1, node7);
 
-let reversed1 = reverseList1(head1);
+let reversed1 = reverseList1(head);
 
 let reversed2 = reverseList2(head2);
 
