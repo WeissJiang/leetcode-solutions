@@ -23,11 +23,11 @@ function solution(nums) {
 
 
 /**
- * Top Level Solution Appreciation
+ * Alternative Solution Appreciation
  */
-const topSolution = (nums) => (nums.length * (nums.length + 1) / 2) - nums.reduce((acc, curr) => acc + curr, 0);
+const alternativeSolution = (nums) => (nums.length * (nums.length + 1) / 2) - nums.reduce((acc, curr) => acc + curr, 0);
 
-function topSolution(nums){
+function alternativeSolution(nums){
     const currSum = nums.reduce((acc, curr) => acc + curr, 0);
     const expectedSum = nums.length * (nums.length + 1) / 2;
 
