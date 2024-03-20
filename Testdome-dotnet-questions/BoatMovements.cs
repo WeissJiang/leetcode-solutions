@@ -59,49 +59,6 @@ namespace Testdome_dotnet_questions
             return true;
         }
 
-        /**
-         * 帮我写一个函数，功能和上面的CanTravelTo一致，但是请用Queue来实现。
-         */
-        public static bool CanTravelTo2(bool[,] gameMatrix, int fromRow, int fromColumn, int toRow, int toColumn)
-        {
-            int rows = gameMatrix.GetLength(0);
-            int cols = gameMatrix.GetLength(1);
-
-            if (fromRow < 0 || fromRow >= rows || fromColumn < 0 || fromColumn >= cols ||
-                toRow < 0 || toRow >= rows || toColumn < 0 || toColumn >= cols ||
-                !gameMatrix[fromRow, fromColumn] || !gameMatrix[toRow, toColumn])
-            {
-                return false;
-            }
-
-            var directions = new[] { new[] { 0, 1 }, new[] { 0, 2 }, new[] { 1, 0 }, new[] { 0, -1 }, new[] { -1, 0 } };
-            var queue = new Queue<int[]>();
-            queue.Enqueue(new[] { fromRow, fromColumn });
-            gameMatrix[fromRow, fromColumn] = false;
-
-            while (queue.Count > 0)
-            {
-                var cell = queue.Dequeue();
-                if (cell[0] == toRow && cell[1] == toColumn)
-                {
-                    return true;
-                }
-
-                foreach (var direction in directions)
-                {
-                    var newRow = cell[0] + direction[0];
-                    var newCol = cell[1] + direction[1];
-                    if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols && gameMatrix[newRow, newCol])
-                    {
-                        queue.Enqueue(new[] { newRow, newCol });
-                        gameMatrix[newRow, newCol] = false;
-                    }
-                }
-            }
-
-            return false;
-        }
-
         public static void Run()
         {
             bool[,] gameMatrix =
@@ -114,9 +71,9 @@ namespace Testdome_dotnet_questions
                 {false, false, false, false, false, false},
             };
 
-            Console.WriteLine(CanTravelTo2(gameMatrix, 3, 2, 2, 2)); // true, Valid move
-            Console.WriteLine(CanTravelTo2(gameMatrix, 3, 2, 3, 4)); // false, Can't travel through land
-            Console.WriteLine(CanTravelTo2(gameMatrix, 3, 2, 6, 2)); // false, Out of bounds
+            Console.WriteLine(CanTravelTo(gameMatrix, 3, 2, 2, 2)); // true, Valid move
+            Console.WriteLine(CanTravelTo(gameMatrix, 3, 2, 3, 4)); // false, Can't travel through land
+            Console.WriteLine(CanTravelTo(gameMatrix, 3, 2, 6, 2)); // false, Out of bounds
         }
     }
 }
